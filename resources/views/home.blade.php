@@ -4,24 +4,22 @@
 <div class="container">
     <div class="row justify-content-center">
         <div class="col-md-8">
+            <?php $user = Auth::user(); ?>
             @if (Auth::check())
-                <?php $user = Auth::user(); ?>
-                <div class="card">
-                    <div class="card-header">ダッシュボード</div>
-
-                    <div class="card-body">
-                        <!-- @if (session('status'))
-                            <div class="alert alert-success" role="alert">
-                                {{ session('status') }}
-                            </div>
-                        @endif -->
-
-                        ログインおめ！<br />
-                        あなたは{{ $user->name }}ですね？
-                    </div>
+            <div class="card">
+                <div class="card-header">ダッシュボード</div>
+                <div class="card-body">
+                    <!-- @if (session('status'))
+                        <div class="alert alert-success" role="alert">
+                            {{ session('status') }}
+                        </div>
+                    @endif -->
+                    <p>id:{{ $user->id }}</p>
+                    <p>{{ $user->name }}</p>
                 </div>
+            </div>
             @else
-                ログインおね
+                ログインしてください
             @endif
         </div>
     </div>
