@@ -19,4 +19,5 @@ Auth::routes();
 
 Route::group(['middleware' => 'auth'], function () {
     Route::get('/home', 'HomeController@index')->name('home');
+    Route::resource('items', 'ItemController', ['only' => ['create', 'store', 'show', 'edit', 'update', 'destroy']]); // 追加
 });

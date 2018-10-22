@@ -18,6 +18,25 @@
                     <p>{{ $user->name }}</p>
                 </div>
             </div>
+                @if (count($items) > 0)
+                    <ul class="media-list">
+                    @foreach ($items as $item)
+                        <li class="media">
+                            <div class="media-body">
+                                <div>
+                                    <p>{!! $item->title !!}</p>
+                                    <p>{!! $item->tag1 !!}</p>
+                                    <p>{!! $item->tag2 !!}</p>
+                                    <p>{!! $item->tag3 !!}</p>
+                                    <p>{!! $item->status !!}</p>
+                                    <p>{!! $item->price !!}</p>
+                                    <p>{!! $item->description !!}</p>
+                                </div>
+                            </div>
+                        </li>
+                    @endforeach
+                    </ul>
+                @endif
             @else
                 ログインしてください
             @endif

@@ -23,6 +23,16 @@ class HomeController extends Controller
      */
     public function index()
     {
-        return view('home');
+        $data = [];
+        if (\Auth::check()) {
+            $user = \Auth::user();
+            $items = $user->items()->orderBy('created_at', 'desc')->paginate(10);
+
+            $data = [
+                'user' => $user,
+                'items' => $items,
+            ];
+        }
+        return view('home', $data);
     }
 }
