@@ -6,18 +6,18 @@
         <div class="col-md-8">
             <?php $user = Auth::user(); ?>
             @if (Auth::check())
-            <div class="card">
+            <!-- <div class="card">
                 <div class="card-header">ダッシュボード</div>
                 <div class="card-body">
-                    <!-- @if (session('status'))
+                    @if (session('status'))
                         <div class="alert alert-success" role="alert">
                             {{ session('status') }}
                         </div>
-                    @endif -->
+                    @endif
                     <p>id:{{ $user->id }}</p>
                     <p>{{ $user->name }}</p>
                 </div>
-            </div>
+            </div> -->
                 @if (count($items) > 0)
                     <ul class="media-list">
                     @foreach ($items as $item)
@@ -31,6 +31,13 @@
                                     <p>{!! $item->status !!}</p>
                                     <p>{!! $item->price !!}</p>
                                     <p>{!! $item->description !!}</p>
+                                </div>
+                                <div>
+                                    @if (Auth::user()->id == $item->user_id)
+                                        {!! Form::open(['route' => ['items.destroy', $item->id], 'method' => 'delete']) !!}
+                                            {!! Form::submit('削除', ['class' => 'btn btn-danger btn-xs']) !!}
+                                        {!! Form::close() !!}
+                                    @endif
                                 </div>
                             </div>
                         </li>
